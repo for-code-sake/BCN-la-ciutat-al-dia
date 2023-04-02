@@ -17,7 +17,7 @@ with requests.get(CSV_URL, stream=True) as r:
     r.raise_for_status()
     df = pd.read_csv(io.StringIO(r.content.decode("utf-8")), low_memory=False)
 
-# Consolidate last's week data
+# Consolidate last's week data. Comment out the following two lines to upload the entire dataset.
 time_delta = (datetime.today() - timedelta(days=7)).strftime("%Y-%m-%d")
 df = df[df["Data_Indicador"] > time_delta]
 
